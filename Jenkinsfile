@@ -31,9 +31,13 @@ pipeline {
         }
 
         stage("Push images") {
-            docker.withRegistry(dockerRegistry, registryCredentials) {
-                resultImage.push("$BUILD_NUMBER")
-                resultImage.push("latest")
+            steps {
+                script {
+                    docker.withRegistry(dockerRegistry, registryCredentials) {
+                    resultImage.push("$BUILD_NUMBER")
+                    resultImage.push("latest")
+                    }                    
+                }
             }
         }
     }
