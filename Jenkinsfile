@@ -1,8 +1,6 @@
 pipeline {
     agent any
 
-    tools {}
-
     environment {
         dockerRegistry = "quentindev97/practice"
         registryCredential = "dockercreds"
@@ -41,6 +39,8 @@ pipeline {
     }
 
     post {
-
+        always{
+            cleanWs()
+        }
     }
 }
