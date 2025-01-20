@@ -8,19 +8,25 @@ services:
       POSTGRES_PASSWORD: "postgres"
 
   vote:
+    context: vote/
+    container_name: voting-app
     image: voting-app
     ports:
-      - "8080:80" # Expose the vote service on port 8080 (http://<EC2_IP>:8080)
+      - "80:80" # Expose the vote service on port 8080 (http://<EC2_IP>:8080)
     depends_on:
       - redis
 
   worker:
+    context: worker/
+    container_name: worker-app
     image: worker-app
     depends_on:
       - db
       - redis
 
   result:
+    context: result/
+    container_name: result-app
     image: result-app
     ports:
       - "8081:80" # Expose the result service on port 8081 (http://<EC2_IP>:8081)
