@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    tools {
+        git 'Git'
+    }
     environment {
         dockerRegistry = "quentindev97/practice"
         registryCredential = "dockercreds"
